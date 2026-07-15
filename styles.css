@@ -8,6 +8,7 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
+    background-color:blueviolet;
 }
 
 .main-container{
@@ -24,9 +25,14 @@ body{
 
 .square{
     border-style:solid;
+    background-color:white;
     border-width:1.23px;
     border-color:gray;
-    background-color:pink;
     width: calc(100%/var(--grid-size));
     height:calc(100%/var(--grid-size));
+    --light:0%;
+}
+
+.clicked{
+    background-color:hsl(0,0%,var(--light));
 }
