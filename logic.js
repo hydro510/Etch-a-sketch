@@ -1,5 +1,6 @@
 let squares = '';
 let isDrawing = false;
+let remove = false;
 let infoObject = document.querySelector(".dimension");
 
 document.addEventListener("mousedown",()=> isDrawing = true);
@@ -7,27 +8,41 @@ document.addEventListener("mouseup",()=> isDrawing = false);
 infoObject.addEventListener("keydown",(event)=>{
     if(event.key==="Enter"){
        let dimension = Number(infoObject.value);
-       
+       if(dimension>0&& dimension<=100){
+         let main = document.querySelector(".main-container");
+         main.style.setProperty(`--grid-size`,`${dimension}`);
 
-       let main = document.querySelector(".main-container");
-       main.style.setProperty(`--grid-size`,`${dimension}`);
+
+         for(let i = 0 ; i < (dimension*dimension) ; i++){
+                squares+='<div class = "square"></div>';
+          }
+
+            document.querySelector(".main-container").innerHTML = squares;
+            squares = '';
+            getsClicked();
 
 
-       for(let i = 0 ; i < (dimension*dimension) ; i++){
-            squares+='<div class = "square"></div>';
+            //new
+            document.querySelector(".remove").addEventListener("click",()=>{
+                remove = !remove;
+                document.querySelectorAll(".square").forEach((square)=>{
+                    if(remove){
+                        square.classList.add("border-less");  
+                    }else{
+                        square.classList.remove("border-less");
+                    }
+                   
+                });
+            });
+
         }
-
-        document.querySelector(".main-container").innerHTML = squares;
-        squares = '';
-
-        getsClicked();
     }
 });
 
 
 function getsClicked(){
      document.querySelectorAll(".square").forEach((square)=>{
-            let light = 100;
+            let light = 90;
             function draw(){
                     square.classList.add("clicked");
                     if(light>0){
