@@ -1,12 +1,12 @@
 let squares = '';
 let isDrawing = false;
-let remove = false;
 let infoObject = document.querySelector(".dimension");
 
 document.addEventListener("mousedown",()=> isDrawing = true);
 document.addEventListener("mouseup",()=> isDrawing = false);
 infoObject.addEventListener("keydown",(event)=>{
     if(event.key==="Enter"){
+       let remove = false;
        let dimension = Number(infoObject.value);
        if(dimension>0&& dimension<=100){
          let main = document.querySelector(".main-container");
